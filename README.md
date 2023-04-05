@@ -4,4 +4,4 @@ A collaborative project exercise put together by and consisting of members from 
 
 ## Contributing
 
-The Club-40 Group Project Odin Project welcomes contributors of all experience levels and backgrounds. If you would like to contribute to our project, be sure to thoroughly read The Odin Project's [contributing guide](https://github.com/TheOdinProject/theodinproject/blob/main/CONTRIBUTING.md).
+The Club-40 Group Project welcomes contributors of all experience levels and backgrounds. If you would like to contribute to our project, be sure to thoroughly read The Odin Project's [contributing guide](https://github.com/TheOdinProject/theodinproject/blob/main/CONTRIBUTING.md).
