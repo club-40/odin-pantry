@@ -120,7 +120,7 @@ The `footer` is optional. The commit footer format describes what the footer is 
 
 ```txt
 <scope>: <short summary>
-   |           └─> Summary in present tense. Not capitalized. No period at the end.
+   |           └─> Summary in the present tense. Not capitalized. No period at the end.
    |
    └─> Commit Scope: Where did this commit happen?
          e.g. docs, syntax, folding, keybinds, github, legal, ...
