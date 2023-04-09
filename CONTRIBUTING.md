@@ -58,7 +58,7 @@ Before you submit your Pull Request, follow these steps:
    You wouldn't want to duplicate existing efforts.
 2. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you're adding.
    Discussing the design upfront helps to ensure that we're ready to accept your work.
-3. [Fork](https://github.com/Club-40/group-project-1) and then clone your fork.
+3. [Fork](https://github.com/Club-40/odins-pantry) and then clone your fork.
 
 4. In your cloned repository, make your changes in a new branch:
 
