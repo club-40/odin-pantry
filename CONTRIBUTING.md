@@ -1,6 +1,24 @@
 # DRAFT Contributing Guidelines
 
-Thank you for considering a contribution to the club-40 group project!
+Thank you for considering a contribution to the [club-40](https://github.com/club-40) group project!
+
+## Table of Contents
+
+- [Got a Question?](#got-a-question)
+- [Found a Bug?](#found-a-bug)
+- [Missing a Feature?](#missing-a-feature)
+- [Submission Guidelines](#submission-guidelines)
+  - [Submitting an Issue](#submitting-an-issue)
+  - [Submitting a Pull Request (PR)](#submitting-a-pull-request-pr)
+    - [Addressing review feedback](#addressing-review-feedback)
+    - [After your pull request is merged](#after-your-pull-request-is-merged)
+- [Commit Message Format](#commit-message-format)
+  - [Commit Message Header](#commit-message-header)
+    - [Scope](#scope)
+    - [Summary](#summary)
+  - [Commit Message Body](#commit-message-body)
+  - [Commit Message Footer](#commit-message-footer)
+    - [Revert commits](#revert-commits)
 
 ## Got a Question?
 
@@ -17,11 +35,11 @@ Or, better, submit a pull request with a fix readily available!
 You can request a new feature by submitting an issue to the issue tracker.
 If you would like to implement a new feature, please consider the impact it would have on the codebase:
 
-* For a major impact affecting multiple files, adding wholly new topics and sections to the documentation, etc.:
+- For a major impact affecting multiple files, adding wholly new topics and sections to the documentation, etc.:
     please open an issue first, outlining your proposal so that it can be discussed.
     This allows us to better coordinate our resources around your proposal and help you in crafting your contribution.
 
-* Small features can be put together and directly submitted as a Pull Request.
+- Small features can be put together and directly submitted as a Pull Request.
 
 ## Submission Guidelines
 
@@ -45,12 +63,12 @@ Before you submit your Pull Request, follow these steps:
 4. In your cloned repository, make your changes in a new branch:
 
     ```shell
-    git checkout -b my-branch master
+    git checkout -b my-branch dev
     ```
 
 5. Make your changes, including tests when appropriate. Please refer to [`test/README.md`](TODO ) for a guide.
 
-6. Follow the current coding style as close as possible. Simply take a look at other files and stick to their styling.
+6. Follow the current coding style as close as possible, in accordance to the provided style guidelines.
 
 7. Commit your changes using a descriptive commit message following our [commit message conventions](TODO).
 
@@ -68,7 +86,7 @@ If we ask for changes via code reviews then:
 
 1. Make the required updates to the code.
 
-1. Push the new changes to your repository (this will update your Pull Request as well)
+2. Push the new changes to your repository (this will update your Pull Request as well)
 
    ```shell
    git push --force-with-lease
@@ -102,7 +120,6 @@ The `footer` is optional. The commit footer format describes what the footer is 
 
 ```txt
 <scope>: <short summary>
-   |           |
    |           └─> Summary in present tense. Not capitalized. No period at the end.
    |
    └─> Commit Scope: Where did this commit happen?
@@ -118,9 +135,9 @@ individual pull requests should they not depend on each other.
 
 Use the summary field to provide a succinct description of the change:
 
-* use the imperative, present tense: "change" not "changed" nor "changes"
-* don't capitalize the first letter
-* no dot (.) at the end
+- use the imperative, present tense: "change" not "changed" nor "changes"
+- don't capitalize the first letter
+- no dot (.) at the end
 
 ### Commit Message Body
 
@@ -128,7 +145,7 @@ Just as in the summary, use the imperative, present tense: "fix" not "fixed" nor
 
 Explain the motivation for the change in the commit message body.
 This commit message should explain _why_ you are making the change.
-You can include a comparison of the previous behavior with the new behavior in order to illustrate the impact of the change.
+You can include a comparison of the previous behavior with the new behavior to illustrate the impact of the change.
 
 ### Commit Message Footer
 
@@ -151,5 +168,5 @@ If the commit reverts a previous commit, it should begin with `revert:`, followe
 
 The content of the commit message body should contain:
 
-* information about the SHA of the commit being reverted in the following format: `This reverts commit <SHA>`,
-* a clear description of the reason for reverting the commit message.
+- information about the SHA of the commit being reverted in the following format: `This reverts commit <SHA>`,
+- a clear description of the reason for reverting the commit message.
