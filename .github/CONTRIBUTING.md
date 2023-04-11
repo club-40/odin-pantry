@@ -4,7 +4,7 @@ Thank you for considering contributing to the [club-40's](https://github.com/clu
 
 We hope you feel welcome as you begin contributing to this project.
 
-<h2 align="center">Table of Contents</h2>
+## Table of Contents
 
 - [Got a Question?](#got-a-question)
 - [Found a Bug?](#found-a-bug)
@@ -22,15 +22,15 @@ We hope you feel welcome as you begin contributing to this project.
   - [Commit Message Footer](#commit-message-footer)
     - [Revert commits](#revert-commits)
 
-<h2 align="center">Got a Question?</h2>
+## Got a Question?
 
 Please do not open issues for general support. We want to keep this issue tracker for bug reports and feature requests. Instead, we suggest you use the discussion feature in the repository.
 
-<h2 align="center">Found a Bug?</h2>
+## Found a Bug?
 
 If you find a bug in the code, you can help us by submitting an issue. Or, better, submit a pull request with a fix readily available!
 
-<h2 align="center">Missing a feature?</h2>
+## Missing a feature?
 
 You can request a new feature by submitting an issue to the issue tracker.
 
