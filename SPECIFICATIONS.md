@@ -22,15 +22,13 @@ Helps in saving money and better planning for recipes
 1. Front End: React with Typescript
 2. Back End: Ruby on Rails
 3. Database: Postgres SQL
-4. Mobile App: React Native ( Undecided on mobile app - TBD )
-5. External APIs:
+4. External APIs:
 
 - https://developer.kroger.com/reference/#tag/Products
 - https://stilltasty.com/
 
-6. Additional Tools: ( TBD )
-   <br></br>
-   <br></br>
+  <br></br>
+  <br></br>
 
 ## Features ( MVP )
 
@@ -55,30 +53,6 @@ Helps in saving money and better planning for recipes
 - Filter products in pantries
   <br></br>
   <br></br>
-
-## Extension Ideas (After MVP)
-
-- Create recipes based on existing items available on the pantry
-- Barcode scanner ( Mobile App - TBD )
-- Push Notifications ( if mobile - TBD )
-- Estimated best by dates if not available through the API
-- Current market pricing indicator if available through API for the product
-- Show Recipes ( optional - TBD )
-- Budgeting Calculator to show spending on food ( optional - TBD )
-- Timelines to show history of products, spending etc ( optional - TBD )
-- Show consumption of products ( optional - TBD )
-- Rating and comments on other pantries ( optional - TBD )
-  <br></br>
-  <br></br>
-
-## To Do
-
-- Branding Styles ( colors and fonts )
-- Database Structure
-- Hosting platform
-
-<br></br>
-<br></br>
 
 ---
 
