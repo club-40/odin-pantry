@@ -1,0 +1,38 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "import",
+    "jsx-a11y"
+  ],
+
+  "globals": {
+    "JSX": "readonly"
+  },
+  "rules": {
+    // enable tsx extensions
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+
+    // disable import resolving to sync with ts
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
+  }
+}

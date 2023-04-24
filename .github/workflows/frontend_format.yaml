@@ -1,0 +1,18 @@
+name: frontend_format
+
+on:
+  push:
+    branches: [main, dev]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: "-w --cache --plugin-search-dir=. ."
+          working_directory: frontend
+          commit_message: "ci: format code"
