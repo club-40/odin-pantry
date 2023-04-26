@@ -1,0 +1,21 @@
+name: Verify Rails Backend
+on: [push, pull_request]
+
+jobs:
+  linters:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: backend
+          bundler-cache: true
+
+      - name: Run lint
+        run: |
+          cd backend
+          bundle exec rubocop --parallel

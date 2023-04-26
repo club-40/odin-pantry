@@ -11,6 +11,7 @@ AllCops:
     - "db/migrate/*"
     - "db/schema.rb"
     - "bin/bundle"
+    - "vendor/bundle/**/*"
 
 Metrics/BlockLength:
   Exclude:
