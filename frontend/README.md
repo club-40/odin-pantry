@@ -9,3 +9,5 @@
 - Vitest: Extensions, devtools and scaffold patterns - what features are we planning and how are they gonna co-exist with storybook?
 
 - ci: TBD on eslint action and adding concurrency to all of them to save minutes
+
+- commitlint: TBD [This commitlint is crap]
