@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --pretty && vite build",
     "preview": "vite preview",
-    "format": "prettier -w . --cache --plugin-search-dir=.",
-    "lint": "eslint --cache ."
+    "format": "prettier --write --cache --plugin-search-dir=. .",
+    "lint": "eslint --fix --cache --ext ts,tsx ."
   },
   "dependencies": {
     "react": "^18.2.0",
