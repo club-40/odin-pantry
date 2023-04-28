@@ -2,6 +2,10 @@ name: frontend_format
 
 on: [ push ]
 
+defaults:
+  run:
+    working-directrory: frontend
+
 jobs:
   format:
     runs-on: ubuntu-latest
