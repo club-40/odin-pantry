@@ -1,10 +1,6 @@
-name: frontend_format
+name: frontend_lint
 
-on:
-  push:
-    branches: [main, dev]
-  pull_request:
-    types: [opened, reopened]
+on: [ push ]
 
 jobs:
   format:
