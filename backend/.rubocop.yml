@@ -1,0 +1,39 @@
+---
+require:
+- rubocop-performance
+- rubocop-rails
+- rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.1.3
+  NewCops: enable
+  Exclude:
+    - "db/migrate/*"
+    - "db/schema.rb"
+    - "bin/bundle"
+    - "vendor/bundle/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/**/*"
+    - "lib/tasks/*"
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Exclude:
+    - "config/environments/production.rb"
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - "config/puma.rb"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
