@@ -1,10 +1,6 @@
 name: frontend_format
 
-on:
-  push:
-    branches: [main, dev]
-  pull_request:
-    types: [opened, reopened]
+on: [ push ]
 
 jobs:
   format:
