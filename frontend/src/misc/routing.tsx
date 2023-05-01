@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
+import type { QueryClient } from "@tanstack/react-query";
 import type {
   LoaderFunction,
   ActionFunction,
@@ -9,8 +10,8 @@ import type {
 
 type Page = {
   default: () => JSX.Element;
-  loader: LoaderFunction;
-  action: ActionFunction;
+  loader: (queryClient: QueryClient) => LoaderFunction;
+  action: (queryClient: QueryClient) => ActionFunction;
   errorBoundary: () => JSX.Element;
 };
 
@@ -122,9 +123,8 @@ const PATHS = import.meta.glob<Page>(
 );
 
 const baseRoutes = generateBaseRoutes<() => JSX.Element>(BASES);
-const pathRoutes = generatePathRoutes<RouteObject, Partial<Page>>(
-  PATHS,
-  (func, key) => {
+const pathRoutes = (queryClient: QueryClient) =>
+  generatePathRoutes<RouteObject, Partial<Page>>(PATHS, (func, key) => {
     const index =
       /index\.(jsx|tsx)$/.test(key) && !key.includes("pages/index")
         ? { index: true }
@@ -134,21 +134,25 @@ const pathRoutes = generatePathRoutes<RouteObject, Partial<Page>>(
       ...index,
       Component: func?.default,
       ErrorBoundary: func?.errorBoundary,
-      loader: func?.loader,
-      action: func?.action,
+      loader: func?.loader!(queryClient),
+      action: func?.action!(queryClient),
     };
-  }
-);
+  });
 
 // this is a static key, not a dangling key
 // eslint-disable-next-line dot-notation
 const App = baseRoutes?.["_app"] || Outlet;
 const FourOFour = baseRoutes?.["404"] || Fragment;
 
-const routes: Parameters<typeof createBrowserRouter>[0] = [
+const routes = (
+  queryClient: QueryClient
+): Parameters<typeof createBrowserRouter>[0] => [
   {
     element: <App />,
-    children: [...pathRoutes, { path: "*", element: <FourOFour /> }],
+    children: [
+      ...pathRoutes(queryClient),
+      { path: "*", element: <FourOFour /> },
+    ],
   },
 ];
 
