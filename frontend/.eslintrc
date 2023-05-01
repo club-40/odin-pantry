@@ -33,6 +33,16 @@
 
     // disable import resolving to sync with ts
     "import/extensions": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+
+    // additional ts settings for strictness
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "default-param-last": "off",
+    "@typescript-eslint/default-param-last": "error",
+    "no-magic-numbers": "off",
+    "@typescript-eslint/no-magic-numbers": "error"
   }
 }
