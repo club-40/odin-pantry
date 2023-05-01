@@ -134,8 +134,8 @@ const pathRoutes = (queryClient: QueryClient) =>
       ...index,
       Component: func?.default,
       ErrorBoundary: func?.errorBoundary,
-      loader: func?.loader!(queryClient),
-      action: func?.action!(queryClient),
+      loader: func?.loader ? func?.loader(queryClient) : undefined,
+      action: func?.action ? func?.action(queryClient) : undefined,
     };
   });
 
