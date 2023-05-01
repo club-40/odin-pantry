@@ -5,7 +5,7 @@ import "@/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import routes from "@/misc/routing";
+import routes from "@/services/routing";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root: HTMLElement = document.getElementById("root")!;
