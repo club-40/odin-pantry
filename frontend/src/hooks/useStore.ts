@@ -22,11 +22,14 @@ type WithSelectors<S> = S extends { getState: () => infer T }
 const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
   _store: S
 ) => {
-  let store = _store as WithSelectors<typeof _store>;
+  const store = _store as WithSelectors<typeof _store>;
   store.use = {};
-  for (let k of Object.keys(store.getState())) {
-    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
-  }
+  Object.keys(store.getState()).forEach((k) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (store.use as any)[k] = () => {
+      store((s) => s[k as keyof typeof s]);
+    };
+  });
 
   return store;
 };

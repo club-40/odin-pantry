@@ -23,6 +23,9 @@ const patterns = {
   optional: [/^-(:?[\w-]+)/, "$1?"],
 } as const;
 
+const ZERO = 0;
+const ONE = 1;
+
 type Bases<T> = Partial<Record<"_app" | "404", T>>;
 type routeType = {
   id?: string;
@@ -66,14 +69,14 @@ const generatePathRoutes = <T extends routeType, K>(
       const path = segment
         .replace(...patterns.slash)
         .replace(...patterns.optional);
-      const root = index === 0;
-      const leaf = index === segments.length - 1 && segments.length > 1;
+      const root = index === ZERO;
+      const leaf = index === segments.length - ONE && segments.length > ONE;
       const node = !root && !leaf;
       const group = /\(\w+\)/.test(path);
       const insert = /^\w|\//.test(path) ? "unshift" : "push";
 
       if (root) {
-        const last = segments.length === 1;
+        const last = segments.length === ONE;
         if (last) {
           routes.push({ path, ...route });
           return parent;
@@ -98,7 +101,7 @@ const generatePathRoutes = <T extends routeType, K>(
         return (
           found ||
           (current?.[
-            insert === "unshift" ? 0 : current.length - 1
+            insert === "unshift" ? ZERO : current.length - ONE
           ] as routeType)
         );
       }
@@ -146,6 +149,7 @@ const FourOFour = baseRoutes?.["404"] || Fragment;
 
 const routes = (
   queryClient: QueryClient
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
 ): Parameters<typeof createBrowserRouter>[0] => [
   {
     element: <App />,

@@ -7,7 +7,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["tsconfig.json", "tsconfig.node.json", "vite.config.ts"]
   },
 
   "extends": [
@@ -43,6 +44,8 @@
     "default-param-last": "off",
     "@typescript-eslint/default-param-last": "error",
     "no-magic-numbers": "off",
-    "@typescript-eslint/no-magic-numbers": "error"
+    "@typescript-eslint/no-magic-numbers": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }
