@@ -25,6 +25,18 @@
     "jsx-a11y"
   ],
 
+  "overrides": [
+    {
+        "files": [
+          "**/*.test.ts",
+          "**/*.test.tsx"
+        ],
+        "rules": {
+            "no-unused-expressions": "off"
+        }
+    }
+  ],
+
   "globals": {
     "JSX": "readonly"
   },
@@ -46,6 +58,15 @@
     "no-magic-numbers": "off",
     "@typescript-eslint/no-magic-numbers": "error",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "import/no-extraneous-dependencies":[
+      "error",
+      {
+         "devDependencies":[
+            "**/*.test.ts",
+            "**/*.test.tsx"
+         ]
+      }
+    ]
   }
 }
