@@ -1,6 +1,6 @@
 name: frontend_lint
 
-on: [ push ]
+on: [ push, workflow_call ]
 
 defaults:
   run:
