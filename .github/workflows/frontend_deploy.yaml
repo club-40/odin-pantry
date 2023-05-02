@@ -53,6 +53,7 @@ jobs:
       - name: Run Tests
         run: npm run test
   deploy:
+    runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Checkout Commit
