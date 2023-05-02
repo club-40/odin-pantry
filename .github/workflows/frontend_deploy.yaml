@@ -12,29 +12,11 @@ defaults:
     working-directory: frontend
 
 jobs:
-  cache:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Commit
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ">=18.0.0"
-      - name: Cache Dependencies 
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: npm ci
   lint:
     uses: ./.github/workflows/frontend_lint.yaml
   test:
     runs-on: ubuntu-latest
-    needs: [cache, lint]
+    needs: lint
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
@@ -42,7 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ">=18.0.0"
-      - name: Restore Cached Dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v2
         id: cache-dependencies
         with:
@@ -50,8 +32,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Install Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
       - name: Run Tests
-        run: npm run test
+        run: npm run test:once
   deploy:
     runs-on: ubuntu-latest
     needs: test
@@ -62,7 +47,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ">=18.0.0"
-      - name: Restore Cached Dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v2
         id: cache-dependencies
         with:
@@ -70,6 +55,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Install Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
       - name: Build App
         run: npm run build
       - name: Deploy to Vercel
