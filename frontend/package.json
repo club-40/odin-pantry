@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "format": "prettier --write --cache --plugin-search-dir=. .",
     "lint": "eslint --fix --cache --ext ts,tsx .",
+    "lint:ci": "eslint --cache --ext ts,tsx .",
     "test": "vitest --environment=jsdom",
     "test:once": "vitest run --environment=jsdom"
   },
