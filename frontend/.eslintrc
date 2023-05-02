@@ -27,13 +27,10 @@
 
   "overrides": [
     {
-        "files": [
-          "**/*.test.ts",
-          "**/*.test.tsx"
-        ],
-        "rules": {
-            "no-unused-expressions": "off"
-        }
+      "files": ["**/*.test.ts", "**/*.test.tsx"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
     }
   ],
 
@@ -59,13 +56,10 @@
     "@typescript-eslint/no-magic-numbers": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "import/no-extraneous-dependencies":[
+    "import/no-extraneous-dependencies": [
       "error",
       {
-         "devDependencies":[
-            "**/*.test.ts",
-            "**/*.test.tsx"
-         ]
+        "devDependencies": ["**/*.test.ts", "**/*.test.tsx"]
       }
     ]
   }
