@@ -1,0 +1,84 @@
+name: frontend_deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ">=18.0.0"
+      - name: Cache Dependencies 
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Install Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+  lint:
+    uses: ./.github/workflows/frontend_lint.yml
+  test:
+    runs-on: ubuntu-latest
+    needs: [cache, lint]
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ">=18.0.0"
+      - name: Restore Cached Dependencies
+        uses: actions/cache@v2
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Run Tests
+        run: npm run test
+  deploy:
+    needs: test
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ">=18.0.0"
+      - name: Restore Cached Dependencies
+        uses: actions/cache@v2
+        id: cache-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Build App
+        run: npm run build
+      - name: Deploy to Vercel
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        needs: [Build App]
+        with:
+          PRODUCTION: github.event_name == 'push' && github.ref == 'refs/heads/main'
+          PR_PREVIEW_DOMAIN: "{REPO}-{PR}.vercel.app"
+          DELETE_EXISTING_COMMENT: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
