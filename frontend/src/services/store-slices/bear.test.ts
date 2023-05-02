@@ -1,5 +1,5 @@
-import { test, expectTypeOf } from 'vitest'
+import { test, expectTypeOf } from "vitest";
 
 test("Test", () => {
-    expectTypeOf(true).toBeBoolean
-})
+  expectTypeOf(true).toBeBoolean;
+});
