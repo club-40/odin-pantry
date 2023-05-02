@@ -1,4 +1,4 @@
-name: frontend_deploy
+name: Frontend Deploy
 
 on:
   push:
@@ -24,17 +24,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ">=18.0.0"
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: npm ci
+        uses: bahmutov/npm-install@v1
       - name: Run Tests
         run: npm run test:once
   deploy:
@@ -47,17 +38,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ">=18.0.0"
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        id: cache-dependencies
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: npm ci
+        uses: bahmutov/npm-install@v1
       - name: Build App
         run: npm run build
       - name: Deploy to Vercel
