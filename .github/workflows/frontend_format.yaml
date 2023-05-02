@@ -16,5 +16,4 @@ jobs:
       - uses: creyD/prettier_action@v4.3
         with:
           prettier_options: "-w --cache --plugin-search-dir=. ."
-          working_directory: frontend
           commit_message: "ci: format code"
