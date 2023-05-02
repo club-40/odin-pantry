@@ -14,6 +14,7 @@ The following examples are mapped like: `path` → `url`
 - `src/pages/_ignored.tsx` ×
 
 The rules, in general, are:
+
 - Nested folders coalesce into nested paths
 - `index.tsx` becomes the root of the path
 - `[]` creates a slug
