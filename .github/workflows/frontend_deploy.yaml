@@ -31,7 +31,7 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm ci
   lint:
-    uses: club-40/odin-pantry/.github/workflows/frontend_lint.yml
+    uses: ./.github/workflows/frontend_lint.yaml
   test:
     runs-on: ubuntu-latest
     needs: [cache, lint]
