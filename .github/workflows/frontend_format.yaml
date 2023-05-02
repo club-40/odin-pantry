@@ -6,6 +6,9 @@ defaults:
   run:
     working-directory: frontend
 
+permissions:
+  contents: write
+
 jobs:
   format:
     runs-on: ubuntu-latest
