@@ -73,7 +73,6 @@ jobs:
         run: npm run build
       - name: Deploy to Vercel
         uses: BetaHuhn/deploy-to-vercel-action@v1
-        needs: [Build App]
         with:
           PRODUCTION: github.event_name == 'push' && github.ref == 'refs/heads/main'
           PR_PREVIEW_DOMAIN: "{REPO}-{PR}.vercel.app"
