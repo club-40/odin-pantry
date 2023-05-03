@@ -1,0 +1,58 @@
+name: Frontend Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  lint:
+    uses: ./.github/workflows/frontend_lint.yaml
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ">=18.0.0"
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: frontend
+      - name: Run Tests
+        run: npm run test:once
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ">=18.0.0"
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: frontend
+      - name: Build App
+        run: npm run build
+      - name: Deploy to Vercel
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          PRODUCTION: github.event_name == 'push' && github.ref == 'refs/heads/main'
+          PR_PREVIEW_DOMAIN: "{REPO}-staging-{PR}.vercel.app"
+          DELETE_EXISTING_COMMENT: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

@@ -31,3 +31,4 @@ pids
 
 .npm
 .eslintcache
+.vercel
