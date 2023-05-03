@@ -50,7 +50,7 @@ jobs:
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
           PRODUCTION: github.event_name == 'push' && github.ref == 'refs/heads/main'
-          PR_PREVIEW_DOMAIN: "{REPO}-{PR}.vercel.app"
+          PR_PREVIEW_DOMAIN: "{REPO}-staging-{PR}.vercel.app"
           DELETE_EXISTING_COMMENT: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
