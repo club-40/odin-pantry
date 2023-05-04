@@ -1,0 +1,98 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Welcome to The Odin Pantry's Storybook
+
+This contains visualization for the Style Guide and Components developed within the project.
+
+## Paths
+
+- **Design** - contains documentation or stories about the styles and patterns that is used within the project
+- **Components** - contains all components developed in the project
+- **Pages** - contains all pages developed in the project
+
+## Creating a story
+
+First, we will need to create a new file with the format: `ComponentName.stories.tsx` and inside that file we will need to import the following:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import Component from './Component';
+```
+
+We also need a default export for the Meta for this Component story
+
+```tsx
+export default {
+  // Add Components/ and the Component name after the forward slash
+  // So that all components are in a single story path
+  title: 'Components/Component Name',
+  // To auto generate documentation
+  tags: ['autodocs'],
+  component: Component
+} satisfies Meta<typeof Component>;
+```
+
+And we can finally create a story for that component by doing:
+
+```tsx
+type Story = StoryObj<typeof Component>;
+
+export const Default: Story = {
+  args: {
+    // Props of the component
+    propOne: '...',
+    propTwo: '...'
+  },
+};
+```
+
+To know more about the recommended way of creating story check out [storybook's documentation](https://storybook.js.org/docs/react/api/csf).
+
+## Adding interactiong testing in stories
+
+Unfortunately, there is still no official way of implementing vitest with storybook yet. For now, we're going to use `@storybook/jest`
+
+We can implement interaction testing by importing the modules `@storybook/jest` and `@storybook/testing-library`.
+
+There are no huge changes in what we have before when creating a component story. We only need to add the following modules:
+
+```tsx
+import { ... } from "@storybook/testing-library";
+import { ... } from "@storybook/jest";
+```
+
+Remove the `...` and replace with whatever you require in those module.
+
+We also need to have the `play` method added in the story, more information regarding the usage of this method [here](https://storybook.js.org/docs/react/writing-stories/play-function)
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import { within, userEvent } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import Button from "./Button";
+
+export default {
+  title: "Components/Button",
+  component: Button,
+  tags: ["autodocs"],
+  argTypes: {
+    onClick: { action: true },
+  },
+} as Meta<typeof Button>;
+
+type Story = StoryObj<typeof Button>;
+
+export const Default: Story = {
+  args: {
+    children: "Click Me!",
+  },
+  // We only need to add the `play` method here
+  play: ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    userEvent.click(canvas.getByRole("button"));
+    expect(args.onClick).toHaveBeenCalled();
+  },
+};
+```
