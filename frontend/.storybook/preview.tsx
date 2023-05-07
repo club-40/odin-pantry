@@ -4,22 +4,22 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "../src/index.css";
 
 const viewports = {
-  mobile: {
-    name: "Mobile",
+  small: {
+    name: "Small",
     styles: {
       width: "390px",
       height: "844px",
     },
   },
-  tablet: {
-    name: "Tablet",
+  medium: {
+    name: "Medium",
     styles: {
       width: "768px",
       height: "1024px",
     },
   },
-  desktop: {
-    name: "Desktop",
+  large: {
+    name: "Large",
     styles: {
       width: "1512px",
       height: "982px",
@@ -63,7 +63,7 @@ const preview: Preview = {
         order: ["Introduction", "Design", "Components"],
       },
     },
-    viewport: { viewports, defaultViewport: "mobile" },
+    viewport: { viewports, defaultViewport: "small" },
   },
   decorators,
 };
