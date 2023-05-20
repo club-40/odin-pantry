@@ -1,0 +1,61 @@
+import { Meta, Canvas, Typeset, DocsContainer } from "@storybook/blocks";
+
+<Meta title="Design/Typography" />
+
+export const typography = {
+  fontFamily: "Inter",
+  weight: {
+    regular: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
+  },
+  sizes: [
+    "12px",
+    "14px",
+    "16px",
+    "18px",
+    "20px",
+    "24px",
+    "30px",
+    "36px",
+    "48px",
+    "60px",
+    "72px",
+  ],
+};
+
+export const sampleText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+# Typography
+
+This documentation contains the typography used within the project
+
+**Font:** Inter
+
+**Weights:** 400 (regular), medium (500), semibold (600), bold (700)
+
+<Typeset
+  fontSizes={typography.sizes}
+  fontWeight={typography.weight.bold}
+  sampleText={sampleText}
+  fontFamily={typography.fontFamily}
+/>
+
+<Canvas>
+**Regular**
+<p className="font-regular text-black">{sampleText}</p>
+
+**Medium**
+
+<p className="font-medium text-black">{sampleText}</p>
+
+**Semi Bold**
+
+<p className="font-semibold text-black">{sampleText}</p>
+
+**Bold**
+
+<p className="font-bold text-black">{sampleText}</p>
+</Canvas>

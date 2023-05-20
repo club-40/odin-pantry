@@ -1,0 +1,41 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+
+<Meta title="Design/Color Guide" />
+
+export const getShadesOf = (hexColor) => {
+  const alphaValues = ["D9", "A6", "73", "40"];
+  return [hexColor].concat(alphaValues.map((value) => hexColor + value));
+};
+
+export const colors = [
+  {
+    title: "Primary",
+    colors: getShadesOf("#FF8A00"),
+  },
+  {
+    title: "Secondary",
+    colors: getShadesOf("#EE6E55"),
+  },
+  {
+    title: "Tertiary",
+    colors: getShadesOf("#2BC3E8"),
+  },
+  {
+    title: "Surface 1",
+    colors: getShadesOf("#F2F5F5"),
+  },
+  {
+    title: "Surface 2",
+    colors: getShadesOf("#DADCDF"),
+  },
+];
+
+# Color Guide
+
+This documentation contains the colors used within the project
+
+<ColorPalette>
+  {colors.map(({ title, colors }) => (
+    <ColorItem title={title} colors={colors} />
+  ))}
+</ColorPalette>

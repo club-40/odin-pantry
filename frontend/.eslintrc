@@ -36,6 +36,18 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
 
+    // disable React module needing to be in scope for jsx, no idea why react-jsx is not working in tsconfig
+    "react/react-in-jsx-scope": "off",
+
+    // disable warning of dev dependencies added by storybook needing to be in dependencies
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+        "peerDependencies": true
+      }
+    ],
+
     // additional ts settings for strictness
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/consistent-type-imports": "error",
