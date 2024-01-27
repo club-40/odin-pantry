@@ -27,4 +27,24 @@ cd odin-pantry
 cd frontend
 ```
 
-4. If necessary, Install the proper version of Node (As of 1/27/2024, you'll need Node version 16 or greater - to avoid issues, it's recommended to install the most recent version of Node). [How to install the proper version of Node]()
+4. If necessary, Install the proper version of Node (As of 1/27/2024, you'll need Node version 16 or greater - to avoid issues, it's recommended to install the most recent version of Node). [How to install the proper version of Node](../docs/ways-to-install-node.md)
+
+5. Install the necessary packages
+
+```bash
+yarn install
+```
+
+6. Build the site
+
+```bash
+yarn build
+```
+
+7. Start the frontend server
+
+```bash
+yarn dev
+```
+
+8. Navigate to the site locally in a browser by visiting `localhost:5173`
